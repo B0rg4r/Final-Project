@@ -1,11 +1,10 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     private float moveSpeed;
-    public float walkSpeed;
+    [SerializeField] float walkSpeed;
     public float sprintSpeed;
 
     public float groundDrag;
@@ -32,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
+
+    //private RaycastHit groundHit;
 
     [Header("Slope Handling")]
     public float maxSlopeAngle;
@@ -69,7 +70,21 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
+        //Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, playerHeight * 0.5f + 0.2f, whatIsGround);
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
+
+        //if (hit.collider)
+        //{
+        //    grounded = true;
+
+        //    groundHit = hit;
+        //}
+        //else
+        //{
+        //    grounded = false;
+        //}
+
 
         MyInput();
         SpeedControl();
@@ -134,7 +149,6 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
-
         }
 
         //Walk mode 
@@ -194,6 +208,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
+        //rb.position = groundHit.point;
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
     private void ResetJump()
