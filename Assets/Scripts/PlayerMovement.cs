@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed;
     public float crouchYScale;
     private float startYScale;
+    private bool isCrouched;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -90,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded && (!isCrouched))
         {
             readyToJump = false;
 
@@ -99,15 +100,18 @@ public class PlayerMovement : MonoBehaviour
 
         Invoke(nameof(ResetJump), jumpCooldown);
 
+
         if (Input.GetKeyDown(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+            isCrouched = true;
         }
 
         if (Input.GetKeyUp(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            isCrouched = false;
         }
     }
 
@@ -126,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Sprint mode
-        if(grounded && Input.GetKey(sprintKey))
+        else if (grounded && Input.GetKey(sprintKey))
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
@@ -153,14 +157,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        // Movement Direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
+        //on slope
+        if(OnSlope())
+        {
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+        }
+
+        // on ground 
         if(grounded)
             rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
 
-
+        // in air
         else if (!grounded)
             rb.AddForce(10f * airMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Force);
+
+        rb.useGravity = !OnSlope();
 
     }
 
@@ -187,7 +201,21 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
 
+   private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f * 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle !=0;
+        }
 
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
 
 
 
