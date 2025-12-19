@@ -70,22 +70,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        //Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, playerHeight * 0.5f + 0.2f, whatIsGround);
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
 
-        //if (hit.collider)
-        //{
-        //    grounded = true;
-
-        //    groundHit = hit;
-        //}
-        //else
-        //{
-        //    grounded = false;
-        //}
-
-
+   
         MyInput();
         SpeedControl();
         StateHandler();
