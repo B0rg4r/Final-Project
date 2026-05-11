@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private float startYScale;
     private bool isCrouched;
 
+    
+
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
@@ -117,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
             isCrouched = false;
         }
     }
+
 
     
 
@@ -219,6 +222,11 @@ public class PlayerMovement : MonoBehaviour
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
+
+
+    
+    
+
 
 
 
