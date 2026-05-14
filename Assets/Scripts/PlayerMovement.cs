@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
+    public float spawnPos;
+    public Vector3 newPos;
+
     [Header("Movement")]
     private float moveSpeed;
     [SerializeField] float walkSpeed;
@@ -61,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        newPos = transform.position;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -223,9 +228,17 @@ public class PlayerMovement : MonoBehaviour
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = Checkpoint.checkpointPosition;
+        }
+    }
 
-    
-    
+
+
+
 
 
 
