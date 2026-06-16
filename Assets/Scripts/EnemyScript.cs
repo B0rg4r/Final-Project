@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -24,10 +25,14 @@ public class EnemyScript : MonoBehaviour
     private Renderer rend;
     private int patrolIndex = 0;
     private float attackTimer = 0f;
+
+   
+
     void Start()
     {
         rend = GetComponent<Renderer>();
         rend.material = patrolMaterial;
+        
     }
 
     // Update is called once per frame
@@ -100,7 +105,13 @@ public class EnemyScript : MonoBehaviour
         {
             Debug.Log("Enemy attacked the player!");
             attackTimer = attackCooldown;
+
+            // find out how to lower player health from this attack 
+            
+
         }
+
+        
     }
 
     // -------- MOVEMENT -------- //
