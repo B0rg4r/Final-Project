@@ -6,27 +6,44 @@ public class PlayerStats : MonoBehaviour
     public GameObject player; 
     public int health;
     public int maxHealth = 10;
+    public float DamageCooldown = 0f;
+    
+
 
     private void Start()
     {
         health = maxHealth;
+        
     }
-    
-    public void TakeDamage(int amount)
-    {
-        health -= amount;
-    }
-
-   
 
     private void Update()
     {
         if (health <= 0)
         {
             Debug.Log("Player is dead");
-             
+            transform.position = checkpointposition;
+            health = maxHealth;
+        }
+
+        DamageCooldown -= Time.deltaTime;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+
+            TakeDamage(1);
         }
     }
+
+
+   
 
 
 

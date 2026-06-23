@@ -4,7 +4,9 @@ public class Checkpoint : MonoBehaviour, IInteractable
 {
     public GameObject player;
     public static Vector3 checkpointPosition;
-    
+    [SerializeField] private PlayerStats playerStats;
+
+
     public void Interact()
     {
         checkpointPosition = player.transform.position;

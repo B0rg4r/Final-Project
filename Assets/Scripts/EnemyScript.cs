@@ -26,13 +26,26 @@ public class EnemyScript : MonoBehaviour
     private int patrolIndex = 0;
     private float attackTimer = 0f;
 
-   
+    [SerializeField] private int damage = 1;
+
+    private PlayerStats playerStats;
+
+
 
     void Start()
     {
         rend = GetComponent<Renderer>();
         rend.material = patrolMaterial;
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            playerStats = player.GetComponent<PlayerStats>();
+        }
+        else
+        {
+            Debug.LogError("Player object not found in the scene.");
+        }
     }
 
     // Update is called once per frame
@@ -106,8 +119,14 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("Enemy attacked the player!");
             attackTimer = attackCooldown;
 
-            // find out how to lower player health from this attack 
-            
+            if (playerStats != null)
+            {
+                playerStats.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.LogError("PlayerStats component not found on the player.");
+            }
 
         }
 

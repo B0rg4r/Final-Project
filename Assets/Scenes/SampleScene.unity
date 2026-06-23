@@ -2229,7 +2229,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1560555890}
+  m_Mesh: {fileID: 104684950}
 --- !u!33 &169406527
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -2871,6 +2871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 370719285}
+  playerStats: {fileID: 0}
 --- !u!43 &216660667
 Mesh:
   m_ObjectHideFlags: 0
@@ -14520,6 +14521,7 @@ MonoBehaviour:
   patrolMaterial: {fileID: 2100000, guid: 5ca5b8bb5d1e426469d919f9f3f92b76, type: 2}
   chaseMaterial: {fileID: 2100000, guid: 448d290c2d5b4c94c9404ecdafbfe52b, type: 2}
   attackMaterial: {fileID: 2100000, guid: 667ca2a7d57c6e24280e50abdb098ae2, type: 2}
+  damage: 1
 --- !u!136 &322739848
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14872,6 +14874,7 @@ MonoBehaviour:
   player: {fileID: 370719285}
   health: 0
   maxHealth: 10
+  DamageCooldown: 1
 --- !u!43 &378319063
 Mesh:
   m_ObjectHideFlags: 0
@@ -24928,6 +24931,7 @@ MonoBehaviour:
   patrolMaterial: {fileID: 2100000, guid: 5ca5b8bb5d1e426469d919f9f3f92b76, type: 2}
   chaseMaterial: {fileID: 2100000, guid: 448d290c2d5b4c94c9404ecdafbfe52b, type: 2}
   attackMaterial: {fileID: 2100000, guid: 667ca2a7d57c6e24280e50abdb098ae2, type: 2}
+  damage: 1
 --- !u!136 &858425581
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -25477,6 +25481,7 @@ MonoBehaviour:
   patrolMaterial: {fileID: 2100000, guid: 5ca5b8bb5d1e426469d919f9f3f92b76, type: 2}
   chaseMaterial: {fileID: 2100000, guid: 448d290c2d5b4c94c9404ecdafbfe52b, type: 2}
   attackMaterial: {fileID: 2100000, guid: 667ca2a7d57c6e24280e50abdb098ae2, type: 2}
+  damage: 1
 --- !u!136 &912744054
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -28862,7 +28867,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -1.6543606e-24, y: 1.8367e-41, z: -1.1102232e-17, w: 1}
   m_LocalPosition: {x: -16.379547, y: 5.100563, z: -22.314869}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0088, y: 1.0088, z: 1.0088}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1342103327}
@@ -28894,6 +28899,7 @@ MonoBehaviour:
   patrolMaterial: {fileID: 2100000, guid: 5ca5b8bb5d1e426469d919f9f3f92b76, type: 2}
   chaseMaterial: {fileID: 2100000, guid: 448d290c2d5b4c94c9404ecdafbfe52b, type: 2}
   attackMaterial: {fileID: 2100000, guid: 667ca2a7d57c6e24280e50abdb098ae2, type: 2}
+  damage: 1
 --- !u!136 &1156972054
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30926,6 +30932,7 @@ MonoBehaviour:
   patrolMaterial: {fileID: 2100000, guid: 5ca5b8bb5d1e426469d919f9f3f92b76, type: 2}
   chaseMaterial: {fileID: 2100000, guid: 448d290c2d5b4c94c9404ecdafbfe52b, type: 2}
   attackMaterial: {fileID: 2100000, guid: 667ca2a7d57c6e24280e50abdb098ae2, type: 2}
+  damage: 1
 --- !u!136 &1239138730
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -46621,6 +46628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 370719285}
+  playerStats: {fileID: 0}
 --- !u!1 &1773245120
 GameObject:
   m_ObjectHideFlags: 0
@@ -86107,6 +86115,18 @@ PrefabInstance:
     - target: {fileID: 4452559830366101819, guid: da7f8f9e0adaf1742b3cf523abd4f67e, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615356081709000125, guid: da7f8f9e0adaf1742b3cf523abd4f67e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0088
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615356081709000125, guid: da7f8f9e0adaf1742b3cf523abd4f67e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0088
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615356081709000125, guid: da7f8f9e0adaf1742b3cf523abd4f67e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0088
       objectReference: {fileID: 0}
     - target: {fileID: 6615356081709000125, guid: da7f8f9e0adaf1742b3cf523abd4f67e, type: 3}
       propertyPath: m_LocalPosition.x
