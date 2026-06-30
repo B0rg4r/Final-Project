@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -62,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
         sprinting,
         air
     }
+    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private int health;
 
     private void Start()
     {
@@ -231,10 +235,14 @@ public class PlayerMovement : MonoBehaviour
     private void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.R))
-        {
-            transform.position = Checkpoint.checkpointPosition;
-        }
+    {
+        transform.position = Checkpoint.checkpointPosition;
     }
+
+       
+        
+    }
+
 
 
 

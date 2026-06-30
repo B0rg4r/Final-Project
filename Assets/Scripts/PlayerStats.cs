@@ -7,8 +7,7 @@ public class PlayerStats : MonoBehaviour
     public int health;
     public int maxHealth = 10;
     public float DamageCooldown = 0f;
-    
-
+   
 
     private void Start()
     {
@@ -20,9 +19,9 @@ public class PlayerStats : MonoBehaviour
     {
         if (health <= 0)
         {
-            Debug.Log("Player is dead");
-            transform.position = checkpointposition;
+            Debug.Log("Player is dead");           
             health = maxHealth;
+            transform.position = Checkpoint.checkpointPosition;
         }
 
         DamageCooldown -= Time.deltaTime;

@@ -14859,6 +14859,8 @@ MonoBehaviour:
   maxSlopeAngle: 80
   orientation: {fileID: 40975790}
   state: 1
+  playerStats: {fileID: 0}
+  health: 0
 --- !u!114 &370719289
 MonoBehaviour:
   m_ObjectHideFlags: 0
