@@ -12,6 +12,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
         checkpointPosition = player.transform.position;
         Debug.Log("Checkpoint reached!");
     }
+
     
     void Start()
     {

@@ -5,6 +5,7 @@ public class EnemyScript : MonoBehaviour
 {
     public enum State { Patrol, Chase, Attack }
     public State currentState = State.Patrol;
+    public GameObject playerObject;
 
     [Header("References")]
     public Transform[] patrolPoints;
@@ -47,6 +48,8 @@ public class EnemyScript : MonoBehaviour
             Debug.LogError("Player object not found in the scene.");
         }
     }
+
+   
 
     // Update is called once per frame
     void Update()
