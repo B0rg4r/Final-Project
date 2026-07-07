@@ -31,6 +31,9 @@ public class EnemyScript : MonoBehaviour
 
     private PlayerStats playerStats;
 
+    public int EnemyHealth;
+    public int MaxEnemyHealth = 3;
+
 
 
     void Start()
@@ -47,6 +50,8 @@ public class EnemyScript : MonoBehaviour
         {
             Debug.LogError("Player object not found in the scene.");
         }
+
+        EnemyHealth = MaxEnemyHealth;
     }
 
    
@@ -70,6 +75,27 @@ public class EnemyScript : MonoBehaviour
         }
 
         attackTimer -= Time.deltaTime;
+
+        if (EnemyHealth <= 0)
+        {
+            Debug.Log("Enemy is dead");
+            Destroy(gameObject);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        EnemyHealth -= amount;
+        Debug.Log("Enemy took damage! Current health: " + EnemyHealth);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Weapon"))
+        {
+
+            TakeDamage(1);
+        }
     }
 
     // -------- PATROL -------- //
