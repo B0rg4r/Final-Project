@@ -242,7 +242,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
     {
         transform.position = Checkpoint.checkpointPosition;
-    }
+            
+        }
 
        
         

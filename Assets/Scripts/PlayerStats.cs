@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -7,11 +8,13 @@ public class PlayerStats : MonoBehaviour
     public int health;
     public int maxHealth = 10;
     public float DamageCooldown = 0f;
+    public Slider HealthBar;
    
 
     private void Start()
     {
         health = maxHealth;
+        HealthBar.value = health;
         
     }
 
@@ -22,6 +25,7 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Player is dead");           
             health = maxHealth;
             transform.position = Checkpoint.checkpointPosition;
+            HealthBar.value = health;
         }
 
         DamageCooldown -= Time.deltaTime;
@@ -30,6 +34,7 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
+        HealthBar.value -= amount;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -38,8 +43,16 @@ public class PlayerStats : MonoBehaviour
         {
 
             TakeDamage(1);
+
+        }
+
+        if (collision.gameObject.CompareTag("DeathBoundary"))
+        {
+            TakeDamage(10);
         }
     }
+
+    
 
 
    

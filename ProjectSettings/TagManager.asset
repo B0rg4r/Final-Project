@@ -7,6 +7,7 @@ TagManager:
   - Door1
   - Enemy
   - Weapon
+  - DeathBoundary
   layers:
   - Default
   - TransparentFX
