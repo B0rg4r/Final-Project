@@ -80,6 +80,7 @@ public class EnemyScript : MonoBehaviour
         {
             Debug.Log("Enemy is dead");
             Destroy(gameObject);
+            
         }
     }
 
